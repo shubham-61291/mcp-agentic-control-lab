@@ -64,24 +64,33 @@ All screenshots reflect real executions, not curated demos.
 ---
 
 ## 🧠 System Architecture
-text'''
+
 User (Browser)
-│
-▼
+        │
+        ▼
 Gradio UI (app.py)
-│
-├─▶ MCP Agent (mcp_core/agent.py)
-│ │
-│ ├─▶ retrieve_policy_context tool (mcp_core/tools.py)
-│ │ ├─▶ Authorization check (core/auth.py)
-│ │ └─▶ Vector Store (ChromaDB / Pinecone / InMemory)
-│ │
-│ └─▶ LLM Brain (core/llm_brain.py) → Ollama / OpenAI
-│
-└─▶ update_policy_context tool (mcp_core/tools.py)
-├─▶ Authorization check (Admin only)
-└─▶ Vector Store write
-'''
+        │
+        ▼
+MCP Agent (mcp_core/agent.py)
+        │
+        ├─────────────────────────────────────────────┐
+        │                                             │
+        ▼                                             ▼
+retrieve_policy_context                     update_policy_context
+(mcp_core/tools.py)                         (mcp_core/tools.py)
+        │                                             │
+        ▼                                             ▼
+Authorization Check                         Authorization Check
+(core/auth.py)                              (Admin Only)
+        │                                             │
+        ▼                                             ▼
+Vector Store (ChromaDB / Pinecone / InMemory) ◄────────┘
+        │
+        ▼
+LLM Brain (core/llm_brain.py)
+        │
+        ▼
+Ollama / OpenAI
 
 All components run inside a single Docker container (or locally), except Ollama which runs natively on the host for direct GPU access.
 
@@ -103,32 +112,34 @@ All components run inside a single Docker container (or locally), except Ollama 
 ---
 
 ## 📂 Project Structure
-'''bash
+
 mcp-agentic-control-lab/
-│── .env.example
-│── docker-compose.yml
-│── Dockerfile
-│── requirements.txt
-│── README.md
-│── app.py # Gradio UI
-│── mcp_native.py # Standalone MCP-Native script
-│── config.py # Central configuration
-│── core/
-│ ├── auth.py # Role definitions & identity checks
-│ ├── document_parser.py # PDF/DOCX/TXT extraction & chunking
-│ ├── embeddings.py # SentenceTransformer engine
-│ ├── vector_store.py # ChromaDB/Pinecone/InMemory stores
-│ └── llm_brain.py # Unified LLM client (Ollama/OpenAI)
-│── mcp_core/
-│ ├── tools.py # MCP tool server (retrieve/update + audit)
-│ └── agent.py # MCP Agent execution pipeline
-└── screenshots/ # UI demonstration images
-├── mcp1.png
-├── mcp2.png
-├── mcp3.png
-├── mcp4.png
-└── mcp5.png
-'''
+├── .env.example
+├── docker-compose.yml
+├── Dockerfile
+├── requirements.txt
+├── README.md
+├── app.py                     # Gradio UI
+├── mcp_native.py              # Standalone MCP-Native script
+├── config.py                  # Central configuration
+│
+├── core/
+│   ├── auth.py                # Role definitions & identity checks
+│   ├── document_parser.py     # PDF/DOCX/TXT extraction & chunking
+│   ├── embeddings.py          # SentenceTransformer engine
+│   ├── vector_store.py        # ChromaDB / Pinecone / InMemory stores
+│   └── llm_brain.py           # Unified LLM client (Ollama/OpenAI)
+│
+├── mcp_core/
+│   ├── tools.py               # MCP tool server (retrieve/update + audit)
+│   └── agent.py               # MCP Agent execution pipeline
+│
+└── screenshots/
+    ├── mcp1.png
+    ├── mcp2.png
+    ├── mcp3.png
+    ├── mcp4.png
+    └── mcp5.png
 
 ---
 
