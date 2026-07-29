@@ -210,14 +210,14 @@ docker compose up -d --build
 Open http://<your-vm-ip>:7860 in a browser
 
 Local Execution (without Docker)
-bash
+
 pip install -r requirements.txt
 python app.py
 
-##👨‍💻 Author
+## 👨‍💻 Author
 
 Shubham Singh
 
-##📜 License
+## 📜 License
 
 MIT License
