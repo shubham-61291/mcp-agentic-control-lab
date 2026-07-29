@@ -103,7 +103,7 @@ All components run inside a single Docker container (or locally), except Ollama 
 ---
 
 ## 📂 Project Structure
-text'''
+'''bash
 mcp-agentic-control-lab/
 │── .env.example
 │── docker-compose.yml
@@ -198,7 +198,7 @@ This provides a complete, transparent trail of all agent‑tool interactions.
 ## ▶️ Usage
 
 ### Quick Start (Docker)
-```bash
+
 # 1. Clone and configure
 cp .env.example .env
 # Edit .env and set ADMIN_EMAIL, USER_EMAIL, OLLAMA_URL (if needed)
