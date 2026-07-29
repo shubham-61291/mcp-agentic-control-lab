@@ -199,15 +199,15 @@ This provides a complete, transparent trail of all agent‑tool interactions.
 
 ### Quick Start (Docker)
 
-# 1. Clone and configure
+1. Clone and configure
 cp .env.example .env
-# Edit .env and set ADMIN_EMAIL, USER_EMAIL, OLLAMA_URL (if needed)
+Edit .env and set ADMIN_EMAIL, USER_EMAIL, OLLAMA_URL (if needed)
 
-# 2. Start the container
+2. Start the container
 docker compose up -d --build
 
-# 3. Access the UI
-# Open http://<your-vm-ip>:7860 in a browser
+3. Access the UI
+Open http://<your-vm-ip>:7860 in a browser
 
 Local Execution (without Docker)
 bash
@@ -215,7 +215,9 @@ pip install -r requirements.txt
 python app.py
 
 ##👨‍💻 Author
+
 Shubham Singh
 
 ##📜 License
+
 MIT License
